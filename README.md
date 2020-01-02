@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 We have docker configuration for multiple kinds of environment, including development. These files are named `Dockerfile.<env>`, so the development container is described by `Dockerfile.dev`.
 
+### Development
+
 To create a development container use the command
 
 ```sh
@@ -26,6 +28,10 @@ This environment variable is not required for Linux/OS X.
 
 Even though we are using volumes for our application in docker-compose, we should still use `COPY . .` so that the container can/will work without using docker-compose.
 
+### Testing
+
+Testing doesn't need a separate container, we will re-use the same one as for development.
+
 To run the tests in the container use:
 
 ```sh
@@ -37,6 +43,22 @@ Note that the docker-compose version of `test` service only re-runs tests on Lin
 ```bat
 docker exec -it <container_id> npm run test
 ```
+
+### Production
+
+The production build is a multi-step build, and is contained in `Dockerfile`. Note that we don't use a suffix.
+
+```sh
+docker build .
+```
+
+To run this, use
+
+```sh
+docker run -p 8080:80 <container_id>
+```
+
+This will start up nginx and forward traffic from port 8080 to the container's port 80.
 
 ## Available Scripts
 
