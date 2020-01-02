@@ -26,6 +26,12 @@ This environment variable is not required for Linux/OS X.
 
 Even though we are using volumes for our application in docker-compose, we should still use `COPY . .` so that the container can/will work without using docker-compose.
 
+To run the tests in the container use:
+
+```sh
+docker run -it <container_id> npm run test
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
