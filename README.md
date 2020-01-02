@@ -10,11 +10,21 @@ To create a development container use the command
 docker build -f Dockerfile.dev .
 ```
 
-Run with
+Run with:
 
 ```sh
-docker run -p 3000:3000 <container id>
+docker run -p 3000:3000 -v /app/node_modules -v $(pwd):/app <container id>
 ```
+
+In the above command the first `-v` sets up an exclusion to the volume (called a bookmark in the course material) that comes next. i.e. /app/node_modules is not replaced by the volume mapping `-v $(pwd):/app`.
+Not sure if the order of these is important - but it seems to be.
+
+Note the above doesn't work in Windows cmd or pwsh.
+
+Note that the `docker-compose.yml` works in Windows as it contains the environment variable `CHOKIDAR_USEPOLLING=true` which allows the container to poll for changes to the host. This is not required if the container is writing to the volume, only if it needs to respond to changes made outside the container.
+This environment variable is not required for Linux/OS X.
+
+Even though we are using volumes for our application in docker-compose, we should still use `COPY . .` so that the container can/will work without using docker-compose.
 
 ## Available Scripts
 
