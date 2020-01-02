@@ -32,6 +32,12 @@ To run the tests in the container use:
 docker run -it <container_id> npm run test
 ```
 
+Note that the docker-compose version of `test` service only re-runs tests on Linux and OS X. It's broken on Windows. On windows, the way to run this is to start the container (`docker-compose up`) and then run the command
+
+```bat
+docker exec -it <container_id> npm run test
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
