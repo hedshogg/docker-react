@@ -1,5 +1,21 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Docker notes
+
+We have docker configuration for multiple kinds of environment, including development. These files are named `Dockerfile.<env>`, so the development container is described by `Dockerfile.dev`.
+
+To create a development container use the command
+
+```sh
+docker build -f Dockerfile.dev .
+```
+
+Run with
+
+```sh
+docker run -p 3000:3000 <container id>
+```
+
 ## Available Scripts
 
 In the project directory, you can run:
