@@ -13,3 +13,19 @@ before_install:
 # Note that we need to set the CI environment variable to "true" so that npm run test doesn't wait for user input when it completes
 script:
   - docker run -e CI=true hedshogg/docker-react npm run test
+
+deploy:
+  # One of the built-in supported deployment targets
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  # The name of our application - can be found on the "all applications" in the beanstalk console
+  app: "docker-react"
+  # The name of the application environment - also on "all applications" in the beanstalk console, below the application name
+  env: "DockerReact-env"
+  # From the s3 management console
+  bucket_name: "elasticbeanstalk-us-east-2-286622174799"
+  # This is the path that the application will be copied into within the bucket - typically this is just the same as the "app" above.
+  bucket_path: "docker-react"
+  # Make sure that the deployment is only triggered from changes on master
+  on:
+    branch: master
