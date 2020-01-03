@@ -14,6 +14,10 @@ RUN npm run build
 # step 2 of 2, install the output from builder into nginx
 FROM nginx
 
+# Tell AWS(!) to open port 80
+# On a local docker instance, this doesn't do anything
+EXPOSE 80
+
 # Use the output from the previous step (/app/build) and copy it to the nginx container's default content directory (as found in the docker hub notes for nginx)
 COPY --from=builder /app/build /usr/share/nginx/html
 
