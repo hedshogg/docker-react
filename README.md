@@ -60,6 +60,14 @@ docker run -p 8080:80 <container_id>
 
 This will start up nginx and forward traffic from port 8080 to the container's port 80.
 
+## Continuous integration with Travis-CI
+
+Travis integrates with GitHub (Bitbucket can be integrated via 3rd parties such as Cloudpipes - https://www.cloudpipes.com/integrations/bitbucket/travis).
+
+Note also that it is possible to build docker images in Jenkins, see https://www.katacoda.com/courses/jenkins/build-docker-images for a 20 minute description.
+
+The course covers building and testing the containers from GitHub using Travis-CI, so that's what will be here.
+
 ## Available Scripts
 
 In the project directory, you can run:
