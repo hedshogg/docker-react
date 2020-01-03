@@ -1,10 +1,15 @@
+# Work around for potential "missing Rakefile" error
 language: generic
+# Anything dealing with docker requires sudo
 sudo: required
+# Tell travis that we need the docker service
 services:
   - docker
 
 before_install:
   - docker build -t hedshogg/docker-react -f Dockerfile.dev .
 
+# Command to run once the container has been started
+# Note that we need to set the CI environment variable to "true" so that npm run test doesn't wait for user input when it completes
 script:
   - docker run -e CI=true hedshogg/docker-react npm run test
