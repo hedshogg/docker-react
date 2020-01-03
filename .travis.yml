@@ -29,3 +29,6 @@ deploy:
   # Make sure that the deployment is only triggered from changes on master
   on:
     branch: master
+  # The two environment variables used here are set up in the travis-ci repository settings
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
